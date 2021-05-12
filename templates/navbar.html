@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"> =) </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Countries
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{url_for('afghanistan')}}">Afghanistan</a>
+          <a class="dropdown-item" href="{{url_for('bangladesh')}}">Bangladesh</a>
+          <a class="dropdown-item" href="{{url_for('bhutan')}}">Bhutan</a>
+          <a class="dropdown-item" href="{{url_for('india')}}">India</a>
+          <a class="dropdown-item" href="{{url_for('maldives')}}">Maldives</a>
+          <a class="dropdown-item" href="{{url_for('nepal')}}">Nepal</a>
+          <a class="dropdown-item" href="{{url_for('pakistan')}}">Pakistan</a>
+          <a class="dropdown-item" href="{{url_for('sri_lanka')}}">Sri Lanka</a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Asia page{% endblock %}
+{% block content %}
+
+<link
+    href="http://cdn.bokeh.org/bokeh/release/bokeh-0.11.1.min.css"
+    rel="stylesheet" type="text/css">
+<script src="http://cdn.bokeh.org/bokeh/release/bokeh-0.11.1.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <h1 style="color:SteelBlue; text-align:center"> Covid-19 in Afghanistan </h1>
+    {{ js_resources1|indent(4)|safe }}
+    {{ css_resources1|indent(4)|safe }}
+    {{ plot_script1|indent(4)|safe }}
+
+    <div style="width: 20%; display: inline-block;">
+         {{ plot_div1|indent(4)|safe }}
+
+    </div>
+
+    <h2> Cumulative Covid cases and Deaths </h2>
+
+    {{ js_resources2|indent(4)|safe }}
+    {{ css_resources2|indent(4)|safe }}
+    {{ plot_script2|indent(4)|safe }}
+
+
+    <div style="width: 20%; display: inline-block;">
+         {{ plot_div2|indent(4)|safe }}
+
+    </div>
+
+    <h2> Cases in Afghanistan and Pakistan  </h2>
+
+    {{ js_resources5|indent(4)|safe }}
+    {{ css_resources5|indent(4)|safe }}
+    {{ plot_script5|indent(4)|safe }}
+
+
+    <div style="width: 20%; display: inline-block;">
+         {{ plot_div5|indent(4)|safe }}
+
+    </div>
+
+   <h2> Daily covid cases in Afghanistan </h2>
+
+    {{ js_resources6|indent(4)|safe }}
+    {{ css_resources6|indent(4)|safe }}
+    {{ plot_script6|indent(4)|safe }}
+
+
+    <div style="width: 20%; display: inline-block;">
+         {{ plot_div6|indent(4)|safe }}
+
+    </div>
+
+{% endblock %}
