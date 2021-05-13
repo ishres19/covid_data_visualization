@@ -1,4 +1,4 @@
-# Covid Data visualization using Bokeh and Flask
+# Covid Data visualization Website
 
 ## How to run the code on Windows:
 1. Go to the data_visualization_project directory
