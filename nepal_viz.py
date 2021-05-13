@@ -2,16 +2,20 @@ from datetime import date, datetime
 from bokeh.models import ColumnDataSource, BooleanFilter, CDSView,  BoxAnnotation, DateRangeSlider, Span
 from individual_country import *
 
+
 def nepal_cases_with_events(cases_dataframe):
     """
     This function, creates a plot showing number of cases vs date (time), with
     vertical lines and annotation blocks showing major festivals and events
     """
+    # create a figure object with width and height
     cases_with_events_plot = figure(x_axis_type="datetime", width=1000, height=400, sizing_mode='fixed')
+    # creating columnDataSource object, for the dataframes
+    cases_source = ColumnDataSource(cases_dataframe)
     init_value = (cases_dataframe['Date'].min(), cases_dataframe['Date'].max())
     date_range_slider = DateRangeSlider(start=init_value[0], end=init_value[1], value=init_value)
-    cases_source = ColumnDataSource(cases_dataframe)
     date_filter = BooleanFilter(booleans=[True] * cases_dataframe.shape[0])
+    # not use scientific numbers on Y-axis
     cases_with_events_plot.yaxis.formatter = BasicTickFormatter(use_scientific=False)
     
     date_range_slider.js_on_change("value", CustomJS(args=dict(f=date_filter, cases_source=cases_source), code="""\
@@ -21,10 +25,11 @@ def nepal_cases_with_events(cases_dataframe):
                                           // Needed because of https://github.com/bokeh/bokeh/issues/7273
                                           cases_source.change.emit();
                                       """))
-
+    # name and field pairs for the Hover tool
     tooltips = [('Date', '@Date{%F}'), ('Nepal', "@Nepal")]
+    # formatting scheme of date column
     formatters = {'@Date': 'datetime'}
-
+    # create a Hover tool for the figure with the tooltips and specify the formatting scheme
     cases_with_events_plot.add_tools(HoverTool(tooltips=tooltips, formatters=formatters, mode='vline'))
     cases_with_events_plot.title.text = 'Confirmed covid Cases'
     cases_with_events_plot.title.text_color = "midnightblue"
@@ -32,39 +37,51 @@ def nepal_cases_with_events(cases_dataframe):
     cases_with_events_plot.xaxis.axis_label = 'Date'
     cases_with_events_plot.yaxis.axis_label = 'Confirmed Casees'
 
+    # add a line renderer using the cases_source's two columns with a label, color and line
     cases_with_events_plot.circle(x='Date', y='Nepal', source=cases_source,
                                   view=CDSView(source=cases_source, filters=[date_filter]),
                                   color='purple', line_width=0.5)
 
+    # create a box annotation between the left date to the right date.
     first_lockdown_mid = BoxAnnotation(top=400000, left=datetime(2020, 3, 24).timestamp() * 1000,
                                        right=datetime(2020, 7, 21).timestamp() * 1000,
                                        fill_alpha=0.1, fill_color='gray')
+    # add the box annotation to the plot
     cases_with_events_plot.renderers.extend([first_lockdown_mid])
+    # label the box annotation in the legend
     cases_with_events_plot.square(legend_label="Lockdown", color='gray')
-
+    # create a box annotation between the left date to the right date.
     tihar = BoxAnnotation(top=400000, left=datetime(2020, 11, 13).timestamp()*1000,
                           right=datetime(2020, 11, 17).timestamp()*1000,
                           fill_alpha=0.1, fill_color='blue')
+    # add the box annotation to the plot
     cases_with_events_plot.renderers.extend([tihar])
+    # label the box annotation in the legend
     cases_with_events_plot.square(legend_label="Tihar", color='blue')
-
+    # create a box annotation between the left date to the right date.
     dashain = BoxAnnotation(top=400000, left=datetime(2020, 10, 23).timestamp()*1000,
                             right=datetime(2020, 10, 27).timestamp()*1000,
                             fill_alpha=0.1, fill_color='red')
+    # add the box annotation to the plot
     cases_with_events_plot.renderers.extend([dashain])
+    # label the box annotation in the legend
     cases_with_events_plot.square(legend_label="Dashain", color='pink')
-    
-    cases_with_events_plot.line(legend_label="Indra Jatra", line_dash=[4, 4],
-                                line_color="yellow", line_width=2)
+    # create a span
     indra_jatra = Span(location=date(2020, 9, 1), dimension='height', line_color='Yellow',
                        line_dash='dashed', line_width=1.5)
+    # label the span in the legend
+    cases_with_events_plot.line(legend_label="Indra Jatra", line_dash=[4, 4],
+                                line_color="yellow", line_width=2)
+    # add the span to the plot
     cases_with_events_plot.add_layout(indra_jatra)
-
-    cases_with_events_plot.line(legend_label="Wedding season begins", line_dash=[4, 4],
-                                line_color="orange", line_width=2)
+    # create a span
     wedding_season = Span(location=date(2021, 3, 23),
                           dimension='height', line_color='orange',
                           line_dash='dashed', line_width=1.5)
+    # label the span in the legend
+    cases_with_events_plot.line(legend_label="Wedding season begins", line_dash=[4, 4],
+                                line_color="orange", line_width=2)
+    # add the span to the plot
     cases_with_events_plot.add_layout(wedding_season)
 
     cases_with_events_plot.line(legend_label="Beginning of Pahachare", line_dash=[4, 4],
@@ -108,6 +125,7 @@ def nepal_cases_with_events(cases_dataframe):
                         dimension='height', line_color='black',
                         line_dash='dashed', line_width=1.5)
     cases_with_events_plot.add_layout(inauguration)
+    # remove the toolbar
     cases_with_events_plot.toolbar_location = None
     cases_with_events_plot.legend.location = "left"
     return column(cases_with_events_plot, date_range_slider)

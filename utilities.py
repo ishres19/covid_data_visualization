@@ -4,17 +4,20 @@ from bokeh.embed import components
 from bokeh.resources import INLINE
 from bokeh.models import Panel, Tabs
 
+
 def read_csv_file(input_file):
     """
     reads csv file, creates a dataframe and returns the dataframe
     """
     with open(input_file, encoding='utf-8-sig') as fp:
         dct = {}
+        # reads the csv file
         reader = csv.reader(fp)
-        # next (reader)
+        # adding csv elements to the dictionary,
+        # each column name is made into a key and the values of the column will be the values of the key
         for row in reader:
             dct[row[0]] = row[1:]
-    # change the key name from 'Country' to 'Date
+    # change the key name from 'Country' to 'Date'
     dct['Date'] = dct.pop('Country')
     # create a dataframe of the dictionary
     dataframe = pd.DataFrame(dct)
@@ -60,7 +63,9 @@ def find_components(plot):
     necessary to embed the plot into a website.
     """
     plot = plot
+    # get script and div of the plot
     plot_script, plot_div = components(plot)
+    # get js and css resources of the plot
     plot_js_resources = INLINE.render_js()
     plot_css_resources = INLINE.render_css()
     return plot_script, plot_div, plot_js_resources, plot_css_resources
@@ -68,23 +73,35 @@ def find_components(plot):
 
 def tabs_for_cumulative_and_daily(cumulative_cases, daily_cases):
     """
-    This function takes two plots, cumulative and daily cases, and creates tabs for it.
+    This function takes two plots, cumulative and daily cases, and returns tab object.
     """
+    # create tab panels
     tab1 = Panel(child=cumulative_cases, title="Cumulative")
     tab2 = Panel(child=daily_cases, title="Daily")
-    tabs = Tabs(tabs=[tab1, tab2])
-    return tabs
+    # Feed the tabs into a Tabs object
+    tabs_object = Tabs(tabs=[tab1, tab2])
+    return tabs_object
 
 
 def tabs_for_linear_and_log_plots(linear_plot, log_plot):
+    """
+    This function takes two plots, linear, and log and returns a Tab oject.
+    """
+    # create tab panels
     tab1 = Panel(child=log_plot, title="Log")
     tab2 = Panel(child=linear_plot, title="Linear")
-    tabs = Tabs(tabs=[tab1, tab2])
-    return tabs
+    # Feed the tabs into a Tabs object
+    tabs_object = Tabs(tabs=[tab1, tab2])
+    return tabs_object
 
 
 def tabs_for_death_and_cases(cases_plot, death_plot):
+    """
+    This function takes two plots, cases_plot, death_plot and returns a Tab oject.
+    """
+    # create tab panels
     tab1 = Panel(child=cases_plot, title="Cases")
     tab2 = Panel(child=death_plot, title="Deaths")
-    tabs = Tabs(tabs=[tab1, tab2])
-    return tabs
+    # Feed the tabs into a Tabs object
+    tabs_object = Tabs(tabs=[tab1, tab2])
+    return tabs_object

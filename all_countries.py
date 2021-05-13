@@ -9,46 +9,48 @@ def all_countries_plot(dataframe, y_axis_type):
     a plot of all the countries in the dataframe.
     """
     # creating columnDataSource object, for the dataframe
-    source = ColumnDataSource(dataframe)
-    # create the figure.
-    all_countries_plot = figure(x_axis_type="datetime", y_axis_type= y_axis_type,
-                                width=1000, height=600, sizing_mode='fixed')
+    date_source_for_plot = ColumnDataSource(dataframe)
+    # create a figure object with width and height
+    all_countries_fig = figure(x_axis_type="datetime", y_axis_type=y_axis_type,
+                               width=1000, height=600, sizing_mode='fixed')
     # color of the plot
-    all_countries_plot.background_fill_color = "whitesmoke"
-    all_countries_plot.border_fill_color = "aliceblue"
-    # not use use scientific numbers.
-    all_countries_plot.yaxis.formatter = BasicTickFormatter(use_scientific=False)
-    # create line graphs for each columns.
-    all_countries_plot.line(x='Date', y='Afghanistan', source=source, color='Black',
-                            line_width=2, legend_label="Afghanistan")
-    all_countries_plot.line(x='Date', y='Bangladesh', source=source, color='green',
-                            line_width=2, legend_label="Bangladesh")
-    all_countries_plot.line(x='Date', y='Bhutan', source=source, color='Orange',
-                            line_width=2, legend_label="Bhutan")
-    all_countries_plot.line(x='Date', y='India', source=source, color='Red',
-                            line_width=2, legend_label="India")
-    all_countries_plot.line(x='Date', y='Maldives', source=source, color='Pink',
-                            line_width=2, legend_label="Maldives")
-    all_countries_plot.line(x='Date', y='Nepal', source=source, color='Blue',
-                            line_width=2, legend_label="Nepal")
-    all_countries_plot.line(x='Date', y='Pakistan', source=source, color='purple',
-                            line_width=2, legend_label="Pakistan")
-    all_countries_plot.line(x='Date', y='Sri Lanka', source=source, color='Brown',
-                            line_width=2, legend_label="Sri Lanka")
+    all_countries_fig.background_fill_color = "whitesmoke"
+    # color of the border
+    all_countries_fig.border_fill_color = "aliceblue"
+    # not use scientific numbers.
+    all_countries_fig.yaxis.formatter = BasicTickFormatter(use_scientific=False)
+    # add a line renderer using the date_source_for_plot's two columns. Also add legend Label and color
+    all_countries_fig.line(x='Date', y='Afghanistan', source=date_source_for_plot, color='Black',
+                           line_width=2, legend_label="Afghanistan")
+    all_countries_fig.line(x='Date', y='Bangladesh', source=date_source_for_plot, color='green',
+                           line_width=2, legend_label="Bangladesh")
+    all_countries_fig.line(x='Date', y='Bhutan', source=date_source_for_plot, color='Orange',
+                           line_width=2, legend_label="Bhutan")
+    all_countries_fig.line(x='Date', y='India', source=date_source_for_plot, color='Red',
+                           line_width=2, legend_label="India")
+    all_countries_fig.line(x='Date', y='Maldives', source=date_source_for_plot, color='Pink',
+                           line_width=2, legend_label="Maldives")
+    all_countries_fig.line(x='Date', y='Nepal', source=date_source_for_plot, color='Blue',
+                           line_width=2, legend_label="Nepal")
+    all_countries_fig.line(x='Date', y='Pakistan', source=date_source_for_plot, color='purple',
+                           line_width=2, legend_label="Pakistan")
+    all_countries_fig.line(x='Date', y='Sri Lanka', source=date_source_for_plot, color='Brown',
+                           line_width=2, legend_label="Sri Lanka")
+    # name and field pairs for the Hover tool
     tooltips = [('Date', '@Date{%F}'), ('Bangladesh', "@Bangladesh"), ('Nepal', "@Nepal"),
                 ('India', "@India"), ('Pakistan', '@Pakistan'),
                 ('Bhutan', '@Bhutan'), ('Maldives', '@Maldives'),
                 ('Sri Lanka', "@{Sri Lanka}"), ('Afghanistan', "@Afghanistan")]
-    formatters = {'@Date': 'datetime',
-                  '@{Sri Lanka}': 'printf'}
-    # create a Hover tool for the figure
-    all_countries_plot.add_tools(HoverTool(tooltips=tooltips, formatters=formatters))
-    all_countries_plot.title.text_color = "midnightblue"
-    all_countries_plot.title.text_font_size = "25px"
-    all_countries_plot.xaxis.axis_label = 'Date'
-    all_countries_plot.yaxis.axis_label = 'Confirmed Casees'
-    all_countries_plot.legend.location = "top_left"
+    # formatting scheme of date column
+    formatters = {'@Date': 'datetime'}
+    # create a Hover tool for the figure with the tooltips and specify the formatting scheme
+    all_countries_fig.add_tools(HoverTool(tooltips=tooltips, formatters=formatters))
+    all_countries_fig.title.text_color = "midnightblue"
+    all_countries_fig.title.text_font_size = "25px"
+    all_countries_fig.xaxis.axis_label = 'Date'
+    all_countries_fig.yaxis.axis_label = 'Confirmed Cases'
+    all_countries_fig.legend.location = "top_left"
     # hide the plot line of the country, if the country's legend is clicked
-    all_countries_plot.legend.click_policy = "hide"
+    all_countries_fig.legend.click_policy = "hide"
 
-    return all_countries_plot
+    return all_countries_fig

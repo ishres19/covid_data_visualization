@@ -6,8 +6,6 @@ from individual_country import *
 from all_countries import *
 
 app = Flask(__name__)
-app.secret_key = "irisa_789"
-app.permanent_session_lifetime = timedelta(days=5)
 
 
 @app.route('/')
@@ -46,6 +44,7 @@ def home():
                            js_resource2=js_resources2,
                            css_resources2=css_resources2
                            )
+
 
 @app.route('/Afghanistan/')
 def afghanistan():
@@ -105,6 +104,7 @@ def afghanistan():
                            js_resources6=daily_cases_plot_js_resources,
                            css_resources6=daily_cases_plot_css_resources
                            )
+
 
 @app.route('/Bangladesh/')
 def bangladesh():
