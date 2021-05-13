@@ -5,9 +5,9 @@
 `cd data_visualization_project`
 
 2. Install pip
-copy paste the following in the terminal
+(copy paste the following in the terminal)
 `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-then
+then:
 `py get-pip.py`
 
 3. Install virtual environment (only if you have python2, python3 comes with virtual environment pre- installed)
