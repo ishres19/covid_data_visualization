@@ -610,5 +610,6 @@ def india():
                            css_resources_comparing_countries=comparing_countries_css_resources5
                            )
 
+
 if __name__ == '__main__':
     app.run(debug=True)

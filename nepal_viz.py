@@ -13,11 +13,12 @@ def nepal_cases_with_events(cases_dataframe):
     # creating columnDataSource object, for the dataframes
     cases_source = ColumnDataSource(cases_dataframe)
     init_value = (cases_dataframe['Date'].min(), cases_dataframe['Date'].max())
+    # configuring date range slider with start date end date and value
     date_range_slider = DateRangeSlider(start=init_value[0], end=init_value[1], value=init_value)
     date_filter = BooleanFilter(booleans=[True] * cases_dataframe.shape[0])
     # not use scientific numbers on Y-axis
     cases_with_events_plot.yaxis.formatter = BasicTickFormatter(use_scientific=False)
-    
+    # whenever a slider value updates. The date range sliders, value changes.
     date_range_slider.js_on_change("value", CustomJS(args=dict(f=date_filter, cases_source=cases_source), code="""\
                                           const [start, end] = cb_obj.value;
                                           f.booleans = Array.from(cases_source.data['Date']).map(d => (d >= start 

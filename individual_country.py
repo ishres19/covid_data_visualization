@@ -38,6 +38,7 @@ def death_and_cases_plot(cases_dataframe, death_dataframe, country_name, y_axis_
     death_and_cases_fig.title.text_font_size = "25px"
     death_and_cases_fig.xaxis.axis_label = 'Date'
     death_and_cases_fig.yaxis.axis_label = 'Confirmed Cases'
+    death_and_cases_fig.legend.location = "top_left"
     return death_and_cases_fig
 
 
@@ -57,7 +58,7 @@ def plot_with_slider(dataframe, country_name, y_axis_name):
     date_filter = BooleanFilter(booleans=[True] * dataframe.shape[0])
     # not use scientific numbers on Y-axis
     plot.yaxis.formatter = BasicTickFormatter(use_scientific=False)
-
+    # whenever a slider value updates. The date range sliders, value changes.
     date_range_slider.js_on_change("value", CustomJS(args=dict(f=date_filter, cases_source=source), code="""\
                                            const [start, end] = cb_obj.value;
                                            f.booleans = Array.from(cases_source.data['Date']).map(d => (d >= start 
@@ -104,6 +105,7 @@ def compare_countries_cumulative_per_million(cases_dataframe, country1, country2
                                 line_width=2, legend_label=country2)
     compare_countries_plot.xaxis.axis_label = 'Date'
     compare_countries_plot.yaxis.axis_label = 'Cases'
+    compare_countries_plot.legend.location = "top_left"
     compare_countries_plot.toolbar_location = None
     return compare_countries_plot
 

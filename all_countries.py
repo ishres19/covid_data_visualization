@@ -5,7 +5,7 @@ from bokeh.models import BasicTickFormatter, HoverTool
 
 def all_countries_plot(dataframe, y_axis_type):
     """
-    This function takes a dataframe, the type of Y_axis you want, linear/log and creates
+    This function takes a dataframe, the type of Y_axis you want, linear/log, and creates
     a plot of all the countries in the dataframe.
     """
     # creating columnDataSource object, for the dataframe
