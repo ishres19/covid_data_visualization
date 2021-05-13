@@ -10,59 +10,59 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <h1  style="color:SteelBlue; text-align:center">Covid-19 in Nepal</h1>
     <h2 style="color:SteelBlue;"> Confirmed cases and Covid related deaths in Nepal </h2>
-    {{ js_resources1|indent(4)|safe }}
-    {{ css_resources1|indent(4)|safe }}
-    {{ plot_script1|indent(4)|safe }}
+    {{ linear_and_log_js_resources|indent(4)|safe }}
+    {{ linear_and_log_css_resources|indent(4)|safe }}
+    {{ linear_and_log_plot_script|indent(4)|safe }}
 
 <body>
     <div style="width: 20%; display: inline-block;">
-         {{ plot_div1|indent(4)|safe }}
+         {{ linear_and_log_plot_div|indent(4)|safe }}
 
     </div>
 	
 	<br> </br>
 	<h2 style="color:SteelBlue;"> Did festivals and events increase the number of cases in Nepal? </h2>
-    {{ js_resources2|indent(4)|safe }}
-    {{ css_resources2|indent(4)|safe }}
-    {{ plot_script2|indent(4)|safe }}
+    {{ cases_with_events_js_resources|indent(4)|safe }}
+    {{ cases_with_events_css_resources|indent(4)|safe }}
+    {{ cases_with_events_plot_script|indent(4)|safe }}
 
 
     <div style="width: 20%; display: inline-block;">
-         {{ plot_div2|indent(4)|safe }}
+         {{ cases_with_events_plot_div|indent(4)|safe }}
     
     </div>
     
     <br> </br>
 	<h2  style="color:SteelBlue;"> Covid-19 cases and Covid related deaths in Nepal </h2>
-    {{ js_resources3|indent(4)|safe }}
-    {{ css_resources3|indent(4)|safe }}
-    {{ plot_script3|indent(4)|safe }}
+    {{ death_and_cases_js_resources|indent(4)|safe }}
+    {{ death_and_cases_css_resources|indent(4)|safe }}
+    {{ death_and_cases_plot_script|indent(4)|safe }}
     <div style="width: 20%; display: inline-block;">
-         {{ plot_div3|indent(4)|safe }}
+         {{ death_and_cases_plot_div|indent(4)|safe }}
 
     </div>
     <br> </br>
 
 <!--	<h2 style="color:SteelBlue;"> Does an increase in Covid cases in India lead to an increase in Covid cases in Nepal? </h2>-->
     <h2 style="color:SteelBlue;"> Cumulative covid cases per million in Nepal and India   </h2>
-    {{ js_resources5|indent(4)|safe }}
-    {{ css_resources5|indent(4)|safe }}
-    {{ plot_script5|indent(4)|safe }}
+    {{ comparing_countries_js_resources|indent(4)|safe }}
+    {{ comparing_countries_css_resources|indent(4)|safe }}
+    {{ pcomparing_countries_plot_script|indent(4)|safe }}
 
 
     <div style="width: 20%; display: inline-block;">
-         {{ plot_div5|indent(4)|safe }}
+         {{ comparing_countries_plot_div|indent(4)|safe }}
     </div>
 
     <h2 style="color:SteelBlue;"> Daily covid cases in Nepal </h2>
 
-    {{ js_resources6|indent(4)|safe }}
-    {{ css_resources6|indent(4)|safe }}
-    {{ plot_script6|indent(4)|safe }}
+    {{ daily_cases_js_resources|indent(4)|safe }}
+    {{ daily_cases_css_resources|indent(4)|safe }}
+    {{ daily_cases_plot_script|indent(4)|safe }}
 
 
     <div style="width: 20%; display: inline-block;">
-         {{ plot_div6|indent(4)|safe }}
+         {{ daily_cases_plot_div|indent(4)|safe }}
 
     </div>
 {% endblock %}
