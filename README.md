@@ -41,7 +41,7 @@ then:
 (copy paste the following in the terminal)
 `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
 then:
-`py get-pip.py`
+`python3 get-pip.py`
 
 3. activate the environment
 `. <data_viz_project>/bin/activate`
