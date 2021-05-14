@@ -14,7 +14,7 @@ then:
 `py -2 -m pip install virtualenv`
 
 4. activate the environment
-`<data_viz_project>Scriptsactivate`
+`<name of environment>Scriptsactivate`
 (data_viz_project is the name of the environment)
 
 5. install flask
