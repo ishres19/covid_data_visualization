@@ -32,3 +32,31 @@ then:
 6. run the application:
 `flask run`
     
+# Covid Data visualization on MacOS and Python3
+
+1. Go to the data_visualization_project directory
+`cd data_visualization_project`
+
+2. Install pip
+(copy paste the following in the terminal)
+`curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
+then:
+`py get-pip.py`
+
+3. activate the environment
+`. <data_viz_project>/bin/activate`
+
+4. install flask
+`pip install Flask`
+
+5. install bokeh
+`pip install bokeh`
+
+6. install pandas
+`pip install pandas`
+
+8. Set the FLASK_APP environment variable.
+`export FLASK_APP=website_data_viz.py`
+
+6. run the application:
+`flask run`
