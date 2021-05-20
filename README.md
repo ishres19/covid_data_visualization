@@ -1,5 +1,7 @@
 # Covid Data visualization Website
 
+https://covid-19-in-south-asia.herokuapp.com/
+
 ## How to run the code on Windows:
 1. Go to the data_visualization_project directory
 `cd data_visualization_project`
